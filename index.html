@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GMT 一键新机 · XXTouch iOS 脚本 · VS大师 · 小青蛙 Pro · 一一助手 — 安卓改机与 iOS 自动化工具</title>
+<meta name="description" content="安卓端 GMT 一键新机改机工具（目前仅支持小米 6 sagit，需先刷机）：修改 IMEI / IMSI / ICCID / MAC 等 180+ 项设备标识，附虚拟定位、应用多开；VS大师、小青蛙 Pro、一一助手改机（小米 6 · 微狗系统）；iOS 端 XXTouch：Lua 5.3 脚本、操作录制重放与 HTTP 二次开发接口。">
+<meta name="keywords" content="一键新机,改机软件,GMT,IMEI修改,设备伪装,虚拟定位,应用多开,小米6刷机,安卓改机,VS大师,小青蛙,一一助手,微狗系统,XXTouch,iOS脚本,Lua自动化,触控重放">
+<link rel="stylesheet" href="assets/css/style.css?v=20261002q9">
+</head>
+<body>
+
+<div class="bg-fx">
+  <div class="grid"></div>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="glow g3"></div>
+</div>
+
+<!-- ========== 导航 ========== -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <!-- 软件切换（导航栏最左；新增软件时复制一个 .ptab 即可） -->
+    <div class="ptabs" id="ptabs" role="tablist" aria-label="产品切换">
+      <span class="ptabs-label">全部软件</span>
+      <button class="ptab active" data-p="xxt" role="tab" aria-selected="true" title="XXTouch · iOS 自动化脚本">
+        <img class="ptab-img" src="assets/img/xxt.webp" alt="XXTouch" width="40" height="40">
+      </button>
+      <button class="ptab" data-p="gmt" role="tab" aria-selected="false" title="GMT 一键新机 · 安卓底层参数改机">
+        <img class="ptab-img" src="assets/img/gmt1.jpg" alt="GMT 一键新机" width="40" height="40">
+      </button>
+      <button class="ptab" data-p="vs" role="tab" aria-selected="false" title="VS大师 · 安卓改机（小米 6 · 微狗系统）">
+        <img class="ptab-img round" src="assets/img/vs.png" alt="VS大师" width="40" height="40">
+      </button>
+      <button class="ptab" data-p="frog" role="tab" aria-selected="false" title="小青蛙 Pro · 安卓改机（小米 6 · 微狗系统）">
+        <img class="ptab-img" src="assets/img/frog.webp" alt="小青蛙 Pro" width="40" height="40">
+      </button>
+      <button class="ptab" data-p="helper" role="tab" aria-selected="false" title="一一助手 · 安卓改机（小米 6 · 微狗系统）">
+        <img class="ptab-img round" src="assets/img/helper.png" alt="一一助手" width="40" height="40">
+      </button>
+      <button class="ptab" data-p="tools" role="tab" aria-selected="false" title="工具包 · 网盘资料一次性下载">
+        <img class="ptab-img" src="assets/img/tools.svg" alt="工具包" width="40" height="40">
+      </button>
+      <button class="ptab" data-p="biz" role="tab" aria-selected="false" title="业务承接 · exe / APK 逆向与安全分析">
+        <img class="ptab-img" src="assets/img/biz.svg" alt="业务承接" width="40" height="40">
+      </button>
+      <!-- 新增软件：复制上面整个 <button class="ptab" data-p="新key">…</button>（只放图标 + title），
+           再到页面底部复制一个 <div class="panel-p" data-panel="新key" hidden>…</div> -->
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#features" data-p="gmt">核心功能</a>
+      <a href="#params" data-p="gmt">参数一览</a>
+      <a href="#models" data-p="gmt">支持机型</a>
+      <a href="#steps" data-p="gmt">使用步骤</a>
+      <a href="#flash" data-p="gmt">刷机说明</a>
+      <a href="#faq" data-p="gmt">常见问题</a>
+      <a href="#xxt" data-p="xxt">XXTouch</a>
+      <a href="#vs" data-p="vs">VS大师</a>
+      <a href="#frog" data-p="frog">小青蛙 Pro</a>
+      <a href="#helper" data-p="helper">一一助手</a>
+      <a href="#tools" data-p="tools">工具包</a>
+      <a href="#biz" data-p="biz">业务承接</a>
+    </nav>
+    <a class="btn btn-primary btn-sm nav-cta" href="#download" data-p="gmt">获取安装包</a>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<!-- ========== 面板：GMT（默认隐藏，切到 GMT 时显示）========== -->
+<div class="panel-p" data-panel="gmt" hidden>
+
+<!-- ========== Hero ========== -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge"><span class="dot"></span> 客户端 v1.18_20220920_R 已发布</span>
+      <h1>GMT 安卓<span class="grad-txt">一键新机</span><br>底层参数虚拟化工具</h1>
+      <p class="lead">
+        一键修改手机品牌、型号、IMEI 串码、IMSI、ICCID 等 <b>180+ 项</b> 硬件与系统设备信息，
+        让目标应用认为这是一台全新的、从未用过的设备。配套虚拟定位、应用多开与全息数据备份还原。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#download">↓ 立即下载客户端</a>
+        <a class="btn btn-ghost" href="#steps">查看使用步骤</a>
+      </div>
+      <div class="hero-tags">
+        <span>✔ 无需 Root</span>
+        <span>✔ 仅支持小米 6</span>
+        <span>✔ 支持虚拟定位</span>
+        <span>✔ 数据备份还原</span>
+        <span>✔ 环境一键切换</span>
+        <span>✔ 安卓 / iOS 双端方案</span>
+      </div>
+
+      <div class="price-box">
+        <div class="pr-left">
+          <span class="pr-name">GMT 一键新机</span>
+          <span class="pr-num"><i>¥</i><b>40</b><i class="pr-unit">/ 月</i></span>
+        </div>
+        <div class="pr-info">
+          <b>月卡 · 全功能</b>
+          <i>TG 联系下单开通，开通后一个月内全功能可用，到期续费即可。</i>
+        </div>
+        <a class="btn btn-primary" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 下单 / 开通</a>
+      </div>
+    </div>
+
+    <!-- 手机模型：复刻 GMT 客户端界面 -->
+    <div class="phone" aria-label="GMT 客户端界面示意">
+      <div class="screen">
+        <div class="statusbar"><span>7:39</span><span>🔒 ▮ 📶 ▰</span></div>
+        <div class="app-bar">GMT <span class="x">✕</span></div>
+        <div class="app-body">
+          <div class="env-cur">当前环境：未命名</div>
+          <div class="env-pick">
+            <div class="qq">🐧</div>
+            <div class="plus">＋</div>
+          </div>
+          <button class="save-env">保存环境数据</button>
+
+          <!-- 悬浮菜单 -->
+          <div class="pop-card">
+            <div class="t">2026-10-24<br>21:34:44</div>
+            <div class="t">zhangzhu</div>
+            <div class="row">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h3v3H7zM14 9h3v3h-3zM7 15h10"/></svg>设置二维码
+            </div>
+            <div class="row">
+              <svg viewBox="0 0 24 24"><path d="M5 3h11l4 4v14H5z"/><path d="M9 12h7M9 16h5"/></svg>用户协议
+            </div>
+          </div>
+
+          <div class="app-row vpn"><span class="ico">🔑</span>VPN连接<span class="chev">›</span></div>
+          <div class="app-row loc"><span class="ico">📍</span>环境定位<span class="chev">›</span></div>
+          <div class="app-row res"><span class="ico">🗂</span>恢复环境<span class="chev">›</span></div>
+
+          <div class="app-acts">
+            <div class="new">新建环境</div>
+            <div class="cfg">环境配置</div>
+          </div>
+          <div class="env-note">当前环境配置模型：未配置</div>
+          <div class="ver">版本：V 1.18_20220920_R<br>系统精简时间：2022-09-17 10:18:39</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 数据条 ========== -->
+<section class="wrap" style="padding-bottom:12px">
+  <div class="stats">
+    <div class="stat"><b>180+</b><span>可修改设备参数</span></div>
+    <div class="stat"><b>6</b><span>核心功能模块</span></div>
+    <div class="stat"><b>小米 6</b><span>当前唯一支持机型</span></div>
+    <div class="stat"><b>1 键</b><span>生成全新设备身份</span></div>
+  </div>
+</section>
+
+<!-- ========== 核心功能 ========== -->
+<section class="alt pad" id="features">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge blue">核心能力</span>
+      <h2 class="sec-title" style="margin-top:14px">六大功能模块，覆盖改机全流程</h2>
+      <p class="sec-sub">从设备身份伪造到定位伪装、应用隔离与数据备份，全部集中在同一个客户端内完成，无需反复切换工具。</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="ic">🎭</div>
+        <h3>设备伪装</h3>
+        <p>一键改变手机各项硬件特征，让目标应用识别为一台全新的、不同型号的设备，重置「新机」状态。</p>
+        <span class="more">了解详情 ›</span>
+      </div>
+      <div class="card">
+        <div class="ic">🆔</div>
+        <h3>多项参数修改</h3>
+        <p>支持修改 IMEI、MAC 地址、手机串号等底层标识参数，参数可单选或批量生成，一键写入当前环境。</p>
+        <span class="more">了解详情 ›</span>
+      </div>
+      <div class="card">
+        <div class="ic">📍</div>
+        <h3>虚拟定位</h3>
+        <p>内置虚拟定位能力，可指定坐标与移动轨迹，配合改机后的设备身份形成完整一致的伪装环境。</p>
+        <span class="more">了解详情 ›</span>
+      </div>
+      <div class="card">
+        <div class="ic">🧩</div>
+        <h3>应用多开</h3>
+        <p>在同一台设备上运行多个相互隔离的应用实例，每个实例拥有独立的设备标识，互不干扰。</p>
+        <span class="more">了解详情 ›</span>
+      </div>
+      <div class="card">
+        <div class="ic">💾</div>
+        <h3>全息备份还原</h3>
+        <p>环境与数据全息备份，一键导出、还原或克隆到另一台设备，换机、批量铺开无需重复配置。</p>
+        <span class="more">了解详情 ›</span>
+      </div>
+      <div class="card">
+        <div class="ic">🌐</div>
+        <h3>VPN 连接</h3>
+        <p>客户端内置 VPN 连接入口，改机环境与网络出口联动，降低设备身份与网络环境不一致带来的异常。</p>
+        <span class="more">了解详情 ›</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 参数一览 ========== -->
+<section class="pad" id="params">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="badge blue">180+ 项</span>
+      <h2 class="sec-title" style="margin-top:14px">可修改参数一览</h2>
+      <p class="sec-sub">以下为常用参数节选，全部参数可在「环境配置」中逐项开关与自定义。</p>
+    </div>
+
+    <div class="params">
+      <div class="param"><kbd>IMEI</kbd><i>移动设备识别码</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>IMEI2</kbd><i>基带识别码</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>IMSI</kbd><i>用户身份模块</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>ICCID</kbd><i>SIM 卡序列号</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>MEID</kbd><i>CDMA 设备号</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>MAC</kbd><i>Wi-Fi / 蓝牙地址</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Serial</kbd><i>设备序列号</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>AndroidID</kbd><i>系统唯一标识</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Brand</kbd><i>品牌</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Model</kbd><i>设备型号</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Device</kbd><i>设备代号</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Product</kbd><i>产品名</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Board</kbd><i>主板型号</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Hardware</kbd><i>硬件平台</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Fingerprint</kbd><i>系统构建指纹</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Build.ID</kbd><i>构建编号</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Screen</kbd><i>分辨率 / 屏幕参数</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>CPU</kbd><i>处理器型号</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Memory</kbd><i>运行内存 / 存储</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Sensor</kbd><i>传感器列表</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Telephony</kbd><i>基带 / 运营商信息</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>SIM</kbd><i>SIM 卡数量与状态</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Location</kbd><i>GPS / 基站坐标</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Account</kbd><i>账号绑定标识</i><span class="ok2">✔</span></div>
+    </div>
+
+    <div class="alert">
+      ⚠ 参数一致性提示：IMEI、IMSI、ICCID、MAC 等参数建议成套生成，避免出现型号与基带版本不匹配的情况，否则部分应用会判定环境异常。
+    </div>
+  </div>
+</section>
+
+<!-- ========== 支持机型 ========== -->
+<section class="alt pad" id="models">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="badge warn">仅此一款</span>
+      <h2 class="sec-title" style="margin-top:14px">支持机型：小米 6</h2>
+      <p class="sec-sub">目前<b>仅支持小米 6（代号 sagit）</b>，已完整验证可用。受系统环境限制，该机型<b>需先刷机</b>后才能使用（详见下方刷机说明）。</p>
+    </div>
+
+    <div class="models">
+      <div class="model hot">
+        <div class="nm">小米 6 🔥</div>
+        <div class="mt">代号 sagit · Android 5.1 起</div>
+        <div class="tags"><em class="flash">需刷机</em><em class="ready">已验证</em></div>
+      </div>
+    </div>
+
+    <div class="alert">
+      ⚠ 机型限制：GMT 当前<b>只支持小米 6</b>，小米 5 / Note / MIX / 红米系列及小米 8 等其他安卓机型
+      <b>均不支持</b>，装上也无法正常运行。下单前请先确认手上是小米 6，避免买错。
+    </div>
+  </div>
+</section>
+
+<!-- ========== 使用步骤 ========== -->
+<section class="pad" id="steps">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge blue">上手指南</span>
+      <h2 class="sec-title" style="margin-top:14px">四步完成改机</h2>
+      <p class="sec-sub">从刷机到生成全新设备身份，整个流程通常在 10 分钟内完成。</p>
+    </div>
+
+    <div class="steps">
+      <div class="step"><span class="ln"></span><div class="n"></div><h4>刷机准备</h4><p>小米 6 机型需先解锁 Bootloader 并刷入指定版本系统，完成数据备份后开始。</p></div>
+      <div class="step"><span class="ln"></span><div class="n"></div><h4>安装客户端</h4><p>安装 GMT 客户端，首次启动阅读并同意《用户协议》，右上角可查看设置二维码。</p></div>
+      <div class="step"><span class="ln"></span><div class="n"></div><h4>新建环境</h4><p>点击「新建环境」→ 选定目标机型模板 → 在「环境配置」中勾选需要修改的 180+ 项参数。</p></div>
+      <div class="step"><div class="n"></div><h4>一键应用</h4><p>点击「保存环境数据」写入设备信息，可叠加虚拟定位，再通过「环境定位」完成伪装。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 刷机说明 ========== -->
+<section class="alt pad" id="flash">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="badge warn">前置条件</span>
+      <h2 class="sec-title" style="margin-top:14px">小米 6 刷机说明</h2>
+      <p class="sec-sub">GMT 依赖特定的系统环境运行，<b>目前仅支持的小米 6</b> 必须先完成刷机与解锁后才能稳定使用。</p>
+    </div>
+
+    <div class="flash-box">
+      <div class="panel">
+        <h3>⚠️ 刷机前必读</h3>
+        <ul>
+          <li><b>备份数据</b>：刷机会清空手机全部数据，请先完整备份照片、聊天记录与文件。</li>
+          <li><b>解锁 Bootloader</b>：小米 6 需在官方 Mi Unlock 工具中解锁，等待期通常为 48 小时以上。</li>
+          <li><b>电量充足</b>：刷机过程中切勿断电，建议电量保持在 60% 以上。</li>
+          <li><b>确认机型代号</b>：小米 6 代号为 <b>sagit</b>，切勿刷入其他机型固件，否则变砖。</li>
+          <li><b>保留返修能力</b>：刷机为不可逆操作，请确认已了解全部风险再继续。</li>
+        </ul>
+      </div>
+
+      <div class="panel blue">
+        <h3>✅ 刷机完成后的配置</h3>
+        <ul>
+          <li>首次开机完成基础设置，<b>不要登录主力账号</b>，避免设备标识被提前记录。</li>
+          <li>保持系统版本与 GMT 要求一致，不要随意升级系统。</li>
+          <li>关闭「查找设备」「Google 自动备份」等会额外写入设备标识的功能。</li>
+          <li>确认 <code>设置 → 关于手机</code> 中型号信息已被环境配置覆盖。</li>
+          <li>随后打开 GMT，点击「环境配置」选择目标机型模板并保存。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert">
+      ⚠ 风险自担声明：刷机、解锁 Bootloader 属于设备底层操作，可能导致数据丢失、设备变砖、失去保修。请仅在自己拥有或已获授权的设备上操作。刷机包请从官方或可信渠道获取，核对 MD5 后再刷入。
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="pad" id="faq">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge blue">FAQ</span>
+      <h2 class="sec-title" style="margin-top:14px">常见问题</h2>
+    </div>
+
+    <div class="faq">
+      <details class="q" open>
+        <summary>支持哪些机型？</summary>
+        <div class="a">目前<b>仅支持小米 6（代号 sagit）</b>。小米 5 / 5s、Note 系列、MIX 系列、红米全系、小米 8 及其他安卓机型均不支持，请勿在其他机型上购买。后续若新增支持机型会另行通知。</div>
+      </details>
+      <details class="q" open>
+        <summary>必须先刷机吗？</summary>
+        <div class="a">是的。小米 6 必须先完成刷机与 Bootloader 解锁才能稳定运行客户端，且系统版本需与客户端要求一致。</div>
+      </details>
+      <details class="q">
+        <summary>改机后原来的数据会丢失吗？</summary>
+        <div class="a">不会。改机只修改设备标识类参数，不触碰应用数据。建议在改机前使用「保存环境数据」做一次全息备份，出现异常可一键「恢复环境」还原到改机前状态。</div>
+      </details>
+      <details class="q">
+        <summary>能同时运行多个改机环境吗？</summary>
+        <div class="a">可以。点击「新建环境」创建多个环境并分别保存数据，配合应用多开功能让每个实例拥有独立的设备标识，不同环境之间互不干扰。</div>
+      </details>
+      <details class="q">
+        <summary>虚拟定位怎么用？</summary>
+        <div class="a">进入「环境定位」设置目标坐标与移动轨迹后保存，建议同时完成设备参数改机与 VPN 连接，让设备身份、网络出口与地理位置三者保持一致。</div>
+      </details>
+      <details class="q">
+        <summary>改机后应用提示设备异常怎么办？</summary>
+        <div class="a">多为参数不一致导致。请检查 IMEI、IMSI、ICCID、MAC 是否成套生成，型号与系统构建指纹是否匹配，并确认未残留其他设备信息后再重新保存环境。</div>
+      </details>
+      <details class="q">
+        <summary>支持多开多少个应用实例？</summary>
+        <div class="a">多开数量取决于设备内存与目标应用的限制。建议按机型配置相应 RAM 参数，单台设备建议不超过 3–5 个实例以保证流畅度。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="pad" id="download">
+  <div class="wrap">
+    <div class="cta">
+      <h2 class="sec-title">开始使用 GMT 一键新机</h2>
+      <p class="sec-sub" style="margin:14px auto 28px">下载客户端后，请先阅读《用户协议》确认使用范围与责任边界，再进行刷机与改机操作。</p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="btn btn-primary" href="assets/download/GMT_v1.18.apk">↓ 下载 v1.18 客户端</a>
+        <a class="btn btn-ghost" href="#flash">先看刷机教程</a>
+      </div>
+      <div class="hero-tags" style="justify-content:center;margin-top:24px">
+        <span>版本 V 1.18_20220920_R</span>
+        <span>系统精简时间 2022-09-17</span>
+        <span>仅限本人设备与已授权设备使用</span>
+      </div>
+      <p class="cta-contact">
+        开通与售后 / 技术交流：
+        <a class="tg" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">Telegram @xiaozhuzhuxz</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /panel GMT -->
+
+<!-- ========== 面板：XXTouch（新增软件时整块复制改 data-panel 即可）========== -->
+<div class="panel-p" data-panel="xxt">
+
+  <section class="hero xxt-hero" id="xxt-top">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge blue"><span class="dot"></span> iOS 端 · 脚本自动化工具</span>
+        <h1>XXTouch <span class="grad-txt">iOS 自动化脚本</span></h1>
+        <p class="lead">
+          运行于 iOS 端的脚本工具，开放且稳定，可记录并重放您的操作，模拟人的触压。
+          基于 Lua 5.3，并提供取色、找色、触摸与键盘事件等扩展能力，同时开放标准 HTTP 二次开发接口。
+        </p>
+        <div class="hero-actions">
+            <a class="btn btn-ghost" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">Telegram 咨询</a>
+        </div>
+        <div class="hero-tags">
+          <span>✔ 记录与重放</span>
+          <span>✔ Lua 5.3</span>
+          <span>✔ 取色 / 找色</span>
+          <span>✔ 触摸与键盘事件</span>
+          <span>✔ HTTP 二次开发</span>
+          <span>✔ 远程锁机制</span>
+        </div>
+
+      <div class="price-box">
+        <div class="pr-left">
+          <span class="pr-name">XXTouch</span>
+          <span class="pr-num"><i>¥</i><b>60</b><i class="pr-unit">/ 年</i></span>
+        </div>
+        <div class="pr-info">
+          <b>年卡 · 全功能</b>
+          <i>TG 联系开通，开通后一年内全功能可用，到期续费即可。</i>
+        </div>
+        <a class="btn btn-primary" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 下单 / 开通</a>
+      </div>
+      </div>
+
+      <div class="xxt-art" aria-hidden="true">
+        <img class="xxt-art-ic" src="assets/img/xxt.webp" alt="" width="176" height="176">
+        <span class="chip c1">记录操作</span>
+        <span class="chip c2">重放触压</span>
+        <span class="chip c3">HTTP API</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad xxt" id="xxt">
+    <div class="wrap">
+      <div class="sec-head center">
+        <span class="badge blue">核心能力</span>
+        <h2 class="sec-title" style="margin-top:14px">开放、稳定、可二次开发</h2>
+        <p class="sec-sub">从操作录制到脚本执行，再到对外接口调用，一套工具覆盖 iOS 自动化的完整链路。</p>
+      </div>
+
+      <div class="cards xxt-cards">
+        <div class="card">
+          <div class="ic">⏺</div>
+          <h3>记录与重放</h3>
+          <p>可完整记录您的屏幕操作并原样重放，模拟真人触压节奏，让重复性的点击、滑动交给脚本自动执行。</p>
+          <span class="more">录制即脚本 ›</span>
+        </div>
+        <div class="card">
+          <div class="ic">🌙</div>
+          <h3>Lua 环境</h3>
+          <p>过程化脚本语言 + meta-mechanisms 机制，既拥有对象、继承等基本面向对象特征，又保持了过程化语言语法简单的特点。</p>
+          <span class="more">低门槛上手 ›</span>
+        </div>
+        <div class="card">
+          <div class="ic">📘</div>
+          <h3>全面的开发手册</h3>
+          <p>支持 Lua 5.3 全部语法与基本函数，并在此基础上提供扩展功能，用于取色、找色、发送触摸、键盘事件等高级实现。</p>
+          <span class="more">文档齐全 ›</span>
+        </div>
+        <div class="card">
+          <div class="ic">🔌</div>
+          <h3>二次开发 API</h3>
+          <p>标准 HTTP 通讯协议，提供脚本启动停止、文件读写、设备注销重启关机、XXTouch 配置等一系列功能，并配有足够安全访问的远程锁机制。</p>
+          <span class="more">HTTP 直连 ›</span>
+        </div>
+      </div>
+
+      <div class="alert">
+        ⚠ 合规提示：XXTouch 面向开发者与自动化测试场景，请仅在自有或已获授权的 iOS 设备上使用，遵守苹果开发者条款及当地法律法规。
+      </div>
+      <p class="xxt-contact">获取 XXTouch / 脚本定制咨询：
+        <a class="tg" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">Telegram @xiaozhuzhuxz</a>
+        　·　
+      </p>
+    </div>
+  </section>
+
+</div><!-- /panel XXTouch -->
+
+<!-- ========== 面板：VS大师（安卓改机 · 小米6 · 微狗系统）========== -->
+<div class="panel-p" data-panel="vs" hidden>
+
+<!-- ========== Hero ========== -->
+<section class="hero" id="vs-top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge"><span class="dot"></span> VS大师 · 安卓改机工具</span>
+      <h1>VS大师 <span class="grad-txt">一键新机</span><br>小米 6 专用改机</h1>
+      <p class="lead">
+        VS大师安卓改机工具。<b>仅支持小米 6</b>，使用前需将手机系统刷为<b>微狗系统</b>，
+        刷机完成后即可配合客户端完成设备环境修改。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-ghost" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 咨询 @xiaozhuzhuxz</a>
+      </div>
+      <div class="hero-tags">
+        <span>✔ 仅支持小米 6</span>
+        <span>✔ 需刷机「微狗系统」</span>
+        <span>✔ TG 开通 · 售后</span>
+      </div>
+
+      <div class="price-box">
+        <div class="pr-left">
+          <span class="pr-name">VS大师</span>
+          <span class="pr-num"><i>¥</i><b>20</b><i class="pr-unit">/ 月</i></span>
+        </div>
+        <div class="pr-info">
+          <b>月卡 · 全功能</b>
+          <i>TG 联系下单开通，开通后一个月内全功能可用，到期续费即可。</i>
+        </div>
+        <a class="btn btn-primary" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 下单 / 开通</a>
+      </div>
+    </div>
+    <div class="vs-art">
+      <img src="assets/img/vs-main.png" alt="VS大师 客户端界面" width="300" height="560">
+    </div>
+  </div>
+</section>
+
+<!-- ========== 使用前提 ========== -->
+<section class="pad" id="vs">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge blue">使用前提</span>
+      <h2 class="sec-title" style="margin-top:14px">开始前请先确认</h2>
+      <p class="sec-sub">两个条件缺一不可，下单前请核对清楚，避免买错。</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="ic">📱</div>
+        <h3>机型：小米 6</h3>
+        <p>仅支持小米 6（代号 sagit）。小米 5 / Note / MIX / 红米及小米 8 等其他机型均不支持。</p>
+        <span class="more">不支持其他机型</span>
+      </div>
+      <div class="card">
+        <div class="ic">⚙️</div>
+        <h3>系统：微狗系统</h3>
+        <p>需先将手机刷机为「微狗系统」后再使用；未刷机或刷了其他系统的机器无法运行。</p>
+        <span class="more">刷机有风险，请注意备份</span>
+      </div>
+      <div class="card">
+        <div class="ic">🛒</div>
+        <h3>获取方式</h3>
+        <p>TG 联系开通，售后与技术交流同样在 Telegram；刷机与使用问题可随时咨询。</p>
+        <span class="more">TG 下单 · 开通快</span>
+      </div>
+    </div>
+
+    <div class="alert">
+      ⚠ 下单前请确认：手上是<b>小米 6</b>，且已（或愿意）刷入<b>微狗系统</b>。两个条件不满足的请勿购买。
+    </div>
+
+    <p class="cta-contact">
+      开通与售后 / 技术交流：
+      <a class="tg" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">Telegram @xiaozhuzhuxz</a>
+    </p>
+  </div>
+</section>
+
+</div><!-- /panel VS大师 -->
+
+<!-- ========== 面板：小青蛙 Pro（安卓改机 · 小米6 · 微狗系统）========== -->
+<div class="panel-p" data-panel="frog" hidden>
+
+<!-- ========== Hero ========== -->
+<section class="hero" id="frog-top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge"><span class="dot"></span> 小青蛙 Pro · 安卓改机工具</span>
+      <h1>小青蛙 Pro <span class="grad-txt">一键新机</span><br>小米 6 专用改机</h1>
+      <p class="lead">
+        小青蛙 Pro 安卓改机工具。<b>仅支持小米 6</b>，使用前需将手机系统刷为<b>微狗系统</b>，
+        刷机完成后即可配合客户端完成设备环境修改。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-ghost" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 咨询 @xiaozhuzhuxz</a>
+      </div>
+      <div class="hero-tags">
+        <span>✔ 仅支持小米 6</span>
+        <span>✔ 需刷机「微狗系统」</span>
+        <span>✔ TG 开通 · 售后</span>
+      </div>
+
+      <div class="price-box">
+        <div class="pr-left">
+          <span class="pr-name">小青蛙 Pro</span>
+          <span class="pr-num"><i>¥</i><b>20</b><i class="pr-unit">/ 月</i></span>
+        </div>
+        <div class="pr-info">
+          <b>月卡 · 全功能</b>
+          <i>TG 联系下单开通，开通后一个月内全功能可用，到期续费即可。</i>
+        </div>
+        <a class="btn btn-primary" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 下单 / 开通</a>
+      </div>
+    </div>
+    <div class="frog-art">
+      <img src="assets/img/frog-main.png" alt="小青蛙 Pro 客户端界面" width="300" height="520">
+    </div>
+  </div>
+</section>
+
+<!-- ========== 使用前提 ========== -->
+<section class="pad" id="frog">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge blue">使用前提</span>
+      <h2 class="sec-title" style="margin-top:14px">开始前请先确认</h2>
+      <p class="sec-sub">两个条件缺一不可，下单前请核对清楚，避免买错。</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="ic">📱</div>
+        <h3>机型：小米 6</h3>
+        <p>仅支持小米 6（代号 sagit）。小米 5 / Note / MIX / 红米及小米 8 等其他机型均不支持。</p>
+        <span class="more">不支持其他机型</span>
+      </div>
+      <div class="card">
+        <div class="ic">⚙️</div>
+        <h3>系统：微狗系统</h3>
+        <p>需先将手机刷机为「微狗系统」后再使用；未刷机或刷了其他系统的机器无法运行。</p>
+        <span class="more">刷机有风险，请注意备份</span>
+      </div>
+      <div class="card">
+        <div class="ic">🛒</div>
+        <h3>获取方式</h3>
+        <p>TG 联系开通，售后与技术交流同样在 Telegram；刷机与使用问题可随时咨询。</p>
+        <span class="more">TG 下单 · 开通快</span>
+      </div>
+    </div>
+
+    <div class="alert">
+      ⚠ 下单前请确认：手上是<b>小米 6</b>，且已（或愿意）刷入<b>微狗系统</b>。两个条件不满足的请勿购买。
+    </div>
+
+    <p class="cta-contact">
+      开通与售后 / 技术交流：
+      <a class="tg" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">Telegram @xiaozhuzhuxz</a>
+    </p>
+  </div>
+</section>
+
+</div><!-- /panel 小青蛙 Pro -->
+
+<!-- ========== 面板：一一助手（安卓改机 · 小米6 · 微狗系统）========== -->
+<div class="panel-p" data-panel="helper" hidden>
+
+<!-- ========== Hero ========== -->
+<section class="hero" id="helper-top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge"><span class="dot"></span> 一一助手 · 安卓改机工具</span>
+      <h1>一一助手 <span class="grad-txt">一键改机</span><br>小米 6 专用改机</h1>
+      <p class="lead">
+        一一助手安卓改机工具。<b>仅支持小米 6</b>，使用前需将手机系统刷为<b>微狗系统</b>，
+        刷机完成后即可配合客户端完成设备环境修改。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-ghost" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 咨询 @xiaozhuzhuxz</a>
+      </div>
+      <div class="hero-tags">
+        <span>✔ 仅支持小米 6</span>
+        <span>✔ 需刷机「微狗系统」</span>
+        <span>✔ TG 开通 · 售后</span>
+      </div>
+
+      <div class="price-box">
+        <div class="pr-left">
+          <span class="pr-name">一一助手</span>
+          <span class="pr-num"><i>¥</i><b>20</b><i class="pr-unit">/ 月</i></span>
+        </div>
+        <div class="pr-info">
+          <b>月卡 · 全功能</b>
+          <i>TG 联系下单开通，开通后一个月内全功能可用，到期续费即可。</i>
+        </div>
+        <a class="btn btn-primary" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 下单 / 开通</a>
+      </div>
+    </div>
+    <div class="helper-art">
+      <img src="assets/img/helper-main.png" alt="一一助手 客户端界面" width="300" height="560">
+    </div>
+  </div>
+</section>
+
+<!-- ========== 使用前提 ========== -->
+<section class="pad" id="helper">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge blue">使用前提</span>
+      <h2 class="sec-title" style="margin-top:14px">开始前请先确认</h2>
+      <p class="sec-sub">两个条件缺一不可，下单前请核对清楚，避免买错。</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="ic">📱</div>
+        <h3>机型：小米 6</h3>
+        <p>仅支持小米 6（代号 sagit）。小米 5 / Note / MIX / 红米及小米 8 等其他机型均不支持。</p>
+        <span class="more">不支持其他机型</span>
+      </div>
+      <div class="card">
+        <div class="ic">⚙️</div>
+        <h3>系统：微狗系统</h3>
+        <p>需先将手机刷机为「微狗系统」后再使用；未刷机或刷了其他系统的机器无法运行。</p>
+        <span class="more">刷机有风险，请注意备份</span>
+      </div>
+      <div class="card">
+        <div class="ic">🛒</div>
+        <h3>获取方式</h3>
+        <p>TG 联系开通，售后与技术交流同样在 Telegram；刷机与使用问题可随时咨询。</p>
+        <span class="more">TG 下单 · 开通快</span>
+      </div>
+    </div>
+
+    <div class="alert">
+      ⚠ 下单前请确认：手上是<b>小米 6</b>，且已（或愿意）刷入<b>微狗系统</b>。两个条件不满足的请勿购买。
+    </div>
+
+    <p class="cta-contact">
+      开通与售后 / 技术交流：
+      <a class="tg" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">Telegram @xiaozhuzhuxz</a>
+    </p>
+  </div>
+</section>
+
+</div><!-- /panel 一一助手 -->
+
+<!-- ========== 面板：工具包（网盘下载区，切到「工具包」图标时显示）========== -->
+<div class="panel-p" data-panel="tools" hidden>
+
+<section class="alt pad" id="tools">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge blue">下载中心</span>
+      <h2 class="sec-title" style="margin-top:14px">工具包</h2>
+      <p class="sec-sub">客户端、刷机包、改机模块、代理与抓包工具，全部收录在同一个网盘里，一次拿全。</p>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tools-art">
+        <img src="assets/img/tools-main.png" alt="工具包网盘目录" width="320" height="400">
+      </div>
+
+      <div>
+        <div class="tool-cta">
+          <a class="btn btn-primary" href="https://pan.quark.cn/s/0822c3397712" target="_blank" rel="noopener noreferrer">📦 打开夸克网盘 · 获取工具包</a>
+          <p class="tools-hint">手机或电脑打开链接即可保存；建议先「转存」到自己的夸克账号，再看网络情况下载。</p>
+        </div>
+
+        <div class="dl-list">
+          <div class="dl-item"><span class="f">📁</span><div><b>GMT系统包</b><i>GMT 客户端及配套系统文件</i></div><em class="up">更新</em></div>
+          <div class="dl-item"><span class="f">📁</span><div><b>微狗3066</b><i>微狗系统 3066 版本</i></div><em class="up">更新</em></div>
+          <div class="dl-item"><span class="f">📁</span><div><b>微狗2358</b><i>微狗系统 2358 版本</i></div><em class="up">更新</em></div>
+          <div class="dl-item"><span class="f">📁</span><div><b>改机</b><i>改机相关模块与配置</i></div></div>
+          <div class="dl-item"><span class="f">📁</span><div><b>GMT</b><i>GMT 工具目录</i></div></div>
+          <div class="dl-item"><span class="f">📁</span><div><b>skill</b><i>技能 / 脚本资源</i></div></div>
+          <div class="dl-item"><span class="f">📁</span><div><b>安卓ip代理</b><i>安卓端 IP 代理相关工具</i></div></div>
+          <div class="dl-item"><span class="f">📁</span><div><b>抓包</b><i>抓包分析与调试工具</i></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert">
+      ⚠ 下载提示：网盘内容由作者整理上传，请先核对文件来源与完整性再使用；请在<b>自己拥有或已获授权的设备</b>上操作，遵守当地法律法规。
+    </div>
+  </div>
+</section>
+
+</div><!-- /panel 工具包 -->
+
+<!-- ========== 面板：业务承接（exe / APK 逆向与安全分析）========== -->
+<div class="panel-p" data-panel="biz" hidden>
+
+<!-- ========== Hero ========== -->
+<section class="hero" id="biz-top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge"><span class="dot"></span> 业务承接 · 逆向与安全分析</span>
+      <h1>exe / APK <span class="grad-txt">逆向分析</span><br>与二次开发</h1>
+      <p class="lead">
+        承接 Windows 端 exe 程序、安卓 APK / iOS IPA 的<b>逆向分析、逻辑还原、协议对接与崩溃定位</b>。
+        以 jadx / apktool / IDA / Frida / Charles 为主力工具链，
+        输出可读的分析报告，以及可复用的改包、重签名与接口对接方案。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">📨 TG 发样本谈需求</a>
+        <a class="btn btn-ghost" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">@xiaozhuzhuxz 咨询</a>
+      </div>
+      <div class="hero-tags">
+        <span>✔ exe / PE 逆向</span>
+        <span>✔ APK / DEX 还原</span>
+        <span>✔ 协议与 Sign 还原</span>
+        <span>✔ 加壳识别 / 脱壳</span>
+      </div>
+    </div>
+    <div class="biz-art">
+      <div class="biz-term">
+        <div class="biz-term-bar">
+          <i class="r"></i><i class="y"></i><i class="g"></i><span>reverse-engineering</span>
+        </div>
+<pre><span class="p">$</span> jadx-gui <span class="f">app.apk</span>            <span class="c"># APK → Java 源码</span>
+<span class="p">$</span> apktool b -a               <span class="c"># 回编译 + 重签名</span>
+<span class="p">$</span> ida64 <span class="f">sample.exe</span>          <span class="c"># PE → F5 伪代码</span>
+<span class="p">$</span> frida -U -f pkg --no-pause
+   ├─ hook Java 层调用
+   └─ dump <span class="f">sign()</span> 参数
+<span class="p">$</span> charles --proxy 8888       <span class="c"># 抓包 → 协议还原</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 服务范围 ========== -->
+<section class="pad" id="biz">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge blue">服务范围</span>
+      <h2 class="sec-title" style="margin-top:14px">能接哪些活</h2>
+      <p class="sec-sub">从安卓 APK 到 Windows exe，从静态反编译到运行时动态分析，覆盖常见的逆向与安全分析场景。</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="ic">📦</div>
+        <h3>APK / DEX 逆向</h3>
+        <p>jadx、apktool 反编译还原 Java 层逻辑，定位关键类与方法，可继续做 Smali 修改、回编译与重签名。</p>
+        <span class="more">安卓 APK / AAB / DEX</span>
+      </div>
+      <div class="card">
+        <div class="ic">🪟</div>
+        <h3>exe / PE 逆向</h3>
+        <p>IDA、x64dbg 静态与动态调试结合，还原 C/C++ 逻辑，定位关键校验与算法流程。</p>
+        <span class="more">Windows 32 / 64 位</span>
+      </div>
+      <div class="card">
+        <div class="ic">🔌</div>
+        <h3>协议与接口还原</h3>
+        <p>Charles / Fiddler / mitmproxy 抓包，还原请求签名、加密参数与接口时序，便于自写客户端对接。</p>
+        <span class="more">Sign / AES / RSA</span>
+      </div>
+      <div class="card">
+        <div class="ic">🛡️</div>
+        <h3>加固识别与脱壳</h3>
+        <p>识别 360 加固、梆梆、乐固等常见壳，做 dex dump、内存完整性分析与反调试对抗。</p>
+        <span class="more">加壳 / 反调试</span>
+      </div>
+      <div class="card">
+        <div class="ic">🧪</div>
+        <h3>运行时动态分析</h3>
+        <p>Frida、Xposed / LSPosed 动态 hook，跟踪调用链、打印参数与返回值，验证改机、改包后的行为。</p>
+        <span class="more">Frida / 免 Root Hook</span>
+      </div>
+      <div class="card">
+        <div class="ic">🐞</div>
+        <h3>崩溃与闪退定位</h3>
+        <p>logcat、ANR、tombstone 与 native crash 分析，定位空指针、栈溢出、SO 崩溃的真实发生点。</p>
+        <span class="more">logcat / native</span>
+      </div>
+    </div>
+
+    <div class="alert">
+      ⚠ 承接范围说明：只做<b>自有或已获书面授权</b>的软件与样本分析、二次开发与调试排障，
+      不提供破解付费授权、盗版分发、游戏外挂与作弊工具。
+    </div>
+
+    <p class="cta-contact">
+      样本与技术沟通：
+      <a class="tg" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">Telegram @xiaozhuzhuxz</a>
+    </p>
+  </div>
+</section>
+
+<!-- ========== 合作流程 ========== -->
+<section class="alt pad" id="biz-flow">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge">合作流程</span>
+      <h2 class="sec-title" style="margin-top:14px">怎么合作</h2>
+      <p class="sec-sub">发样本 → 评估 → 交付 → 答疑，四步走完。</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="n"></div>
+        <h4>需求沟通</h4>
+        <p>先说清目标：想看懂逻辑、改功能、对接协议，还是定位崩溃。TG 上直接说即可。</p>
+      </div>
+      <div class="step">
+        <div class="n"></div>
+        <h4>样本评估 · 报价</h4>
+        <p>提供 APK / exe / 日志，先做一轮轻量试分析，判断复杂度与周期后给出报价。</p>
+      </div>
+      <div class="step">
+        <div class="n"></div>
+        <h4>分析与交付</h4>
+        <p>出分析报告 + 交付物（改包、脚本、patch、关键代码段），附使用说明与注意事项。</p>
+      </div>
+      <div class="step">
+        <div class="n"></div>
+        <h4>答疑与迭代</h4>
+        <p>交付后提供一段时间的技术答疑，需要继续迭代可按难度另行商量。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 工具链 ========== -->
+<section class="pad" id="biz-tools">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge blue">常用工具链</span>
+      <h2 class="sec-title" style="margin-top:14px">手上常备的东西</h2>
+      <p class="sec-sub">静态反编译、动态调试、抓包与签名，一条链路能跑通。</p>
+    </div>
+
+    <div class="params">
+      <div class="param"><kbd>jadx</kbd><i>DEX → Java 反编译</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>apktool</kbd><i>回编译 / 重签名</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>IDA</kbd><i>PE / ELF 静态反汇编</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>x64dbg</kbd><i>Windows 动态调试</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Frida</kbd><i>跨端动态 hook</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>LSPosed</kbd><i>安卓免 Root 插件</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>Charles</kbd><i>抓包与协议分析</i><span class="ok2">✔</span></div>
+      <div class="param"><kbd>mitmproxy</kbd><i>接口重放与改包</i><span class="ok2">✔</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="alt pad" id="biz-faq">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="badge">常见问题</span>
+      <h2 class="sec-title" style="margin-top:14px">先问这几个</h2>
+    </div>
+    <div class="faq">
+      <details class="q">
+        <summary>能接哪些格式？</summary>
+        <div class="a">Windows 的 exe / dll、安卓的 apk / aab / dex / so、iOS 的 ipa，以及 H5 与小程序里的 JS 代码都可以。样本越全（安装包 + 登录态 + 抓包日志）分析越快。</div>
+      </details>
+      <details class="q">
+        <summary>多久能出结果？</summary>
+        <div class="a">看复杂度：单模块逻辑还原通常 1–3 天，涉及加壳、协议加密或 native 层的活可能一到两周。先做轻量评估再定周期，不会拖着不给答复。</div>
+      </details>
+      <details class="q">
+        <summary>怎么收费？</summary>
+        <div class="a">按难度与工作量报价，评估阶段可先做一小段试分析给你看效果，满意再谈整体。具体以 TG 沟通后给的报价为准。</div>
+      </details>
+      <details class="q">
+        <summary>会不会涉及违规内容？</summary>
+        <div class="a">不会。只承接自有或已获授权的软件分析、二次开发与调试排障，不接破解付费授权、盗版分发、游戏外挂这类需求。样本来源合法的活才接。</div>
+      </details>
+    </div>
+
+    <div class="cta">
+      <h2 class="sec-title">有样本要分析？先聊两句</h2>
+      <p class="sec-sub" style="margin:14px auto 28px">把目标、格式和你想要的结果说清楚，TG 上发过来就行。</p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="btn btn-primary" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">📨 Telegram 联系 @xiaozhuzhuxz</a>
+        <a class="btn btn-ghost" href="#tools">先看工具包</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /panel 业务承接 -->
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#top"><span class="logo-mark">G</span> GMT 一键新机</a>
+        <p>安卓底层参数修改与虚拟化工具，另提供 iOS 端 XXTouch 脚本工具。用于自有设备的环境管理与测试调试，请遵守当地法律法规与设备厂商服务条款。</p>
+        <p class="foot-tg">开通与联系：
+          <a class="tg" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">Telegram @xiaozhuzhuxz</a>
+        </p>
+      </div>
+      <div>
+        <h5>产品</h5>
+        <a href="#features" data-p="gmt">核心功能</a>
+        <a href="#params" data-p="gmt">参数一览</a>
+        <a href="#models" data-p="gmt">支持机型</a>
+        <a href="#xxt" data-p="xxt">XXTouch（iOS）</a>
+        <a href="#vs" data-p="vs">VS大师（安卓）</a>
+        <a href="#frog" data-p="frog">小青蛙 Pro（安卓）</a>
+        <a href="#helper" data-p="helper">一一助手（安卓）</a>
+        <a href="#tools" data-p="tools">工具包（网盘）</a>
+        <a href="#biz" data-p="biz">业务承接（逆向）</a>
+      </div>
+      <div>
+        <h5>教程</h5>
+        <a href="#steps" data-p="gmt">使用步骤</a>
+        <a href="#flash" data-p="gmt">刷机说明</a>
+        <a href="#faq" data-p="gmt">常见问题</a>
+      </div>
+      <div>
+        <h5>关于</h5>
+        <a href="#download" data-p="gmt">下载客户端</a>
+        <a href="#faq">用户协议</a>
+        <a class="tg" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">Telegram @xiaozhuzhuxz</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 GMT 展示页 · 本站仅为产品介绍与技术支持页面，不提供任何破解、内购或第三方付费渠道 · 风险自担</div>
+  </div>
+</footer>
+
+<div class="fab-stack">
+  <a class="fab fab-tg" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer" aria-label="Telegram 联系">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 19 19.2c-.2 1-.8 1.2-1.6.8l-4.4-3.3-2.1 2c-.2.2-.4.4-.9.4l.3-4.4 8-7.2c.3-.3 0-.5-.5-.2L6.9 12.3 2.7 11c-.9-.3-.9-.9.2-1.3l17-6.6c.8-.3 1.5.2 1.2 1.2z"/></svg>
+    <span>Telegram</span>
+  </a>
+</div>
+
+<!-- 鼠标彗星拖尾（鼠标移动时彩色拖尾，纯装饰，不参与交互） -->
+<canvas class="fx" id="fx" aria-hidden="true"></canvas>
+
+<script src="assets/js/main.js?v=20261002q9"></script>
+</body>
+</html>
