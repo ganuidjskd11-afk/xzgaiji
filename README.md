@@ -110,24 +110,18 @@
 
 ---
 
-## 📁 项目结构
+## 💬 Telegram 咨询
 
-```
-xzgaiji/
-├── index.html              # 主页面（单页，含全部板块）
-├── .nojekyll               # 禁用 Jekyll 处理，保证 assets/ 原样输出
-└── assets/
-    ├── css/
-    │   └── style.css       # 全站样式（35 KB）
-    ├── js/
-    │   └── main.js         # 交互脚本
-    └── img/
-        ├── gmt1.jpg         # GMT 一键新机 logo（黑金）
-        ├── xxt.webp         # XXTouch logo（蓝白 XXT）
-        ├── vs-main.png      # VS大师 界面截图
-        ├── helper-main.png  # 一一助手 界面截图
-        ├── frog-main.png    # 小青蛙 Pro 界面截图
-        ├── tools-main.png   # 工具包文件列表
-        ├── frog.webp        # 小青蛙方形图 800×800
-        └── biz.svg / tools.svg / vs.png / helper.png
-```
+<p align="center">
+  <a href="https://t.me/xiaozhuzhuxz">
+    <img src="https://img.shields.io/badge/Telegram-@xiaozhuzhuxz-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram 联系">
+  </a>
+</p>
+
+<p align="center">
+  使用问题 · 刷机包获取 · 授权开通，欢迎通过 Telegram 联系
+</p>
+
+<p align="center">
+  👉 <b><a href="https://t.me/xiaozhuzhuxz">t.me/xiaozhuzhuxz</a></b>
+</p>
