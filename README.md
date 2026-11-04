@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="./assets/img/tools-main.png" alt="GMT 一键新机" width="760">
+  <img src="./assets/img/gmt1.jpg" alt="GMT 一键新机" width="86">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/img/xxt.webp" alt="XXTouch" width="86">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/img/frog.webp" alt="小青蛙 Pro" width="86">
 </p>
 
 <h1 align="center">GMT 一键新机 · 安卓改机与 iOS 自动化工具</h1>
@@ -53,16 +57,55 @@
 
 ---
 
-## 🖼 界面预览
+## 🖼 产品界面
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="./assets/img/vs-main.png" alt="VS大师" width="225"><br><br>
+      <b>VS大师</b><br>
+      <sub>辅助功能 · 设备型号</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="./assets/img/helper-main.png" alt="一一助手" width="225"><br><br>
+      <b>一一助手</b><br>
+      <sub>改机配置 · 备份管理</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="./assets/img/frog-main.png" alt="小青蛙 Pro" width="225"><br><br>
+      <b>小青蛙 Pro</b><br>
+      <sub>扫码充值 · 设备信息</sub>
+    </td>
+  </tr>
+</table>
+
+### ⌬ GMT 一键新机 ｜ XXTouch
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="./assets/img/gmt1.jpg" alt="GMT 一键新机" width="130"><br><br>
+      <b>GMT 一键新机</b><br>
+      <sub>安卓改机核心 · 修改 IMEI / IMSI / ICCID / MAC 等 180+ 项</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="./assets/img/xxt.webp" alt="XXTouch" width="130"><br><br>
+      <b>XXTouch</b><br>
+      <sub>iOS 自动化引擎 · Lua 5.3 · 操作录制重放 · HTTP 接口</sub>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 📦 工具包
 
 <p align="center">
-  <img src="./assets/img/helper-main.png" alt="一一助手" width="360">
-  &nbsp;&nbsp;
-  <img src="./assets/img/vs-main.png" alt="VS大师" width="360">
+  <img src="./assets/img/tools-main.png" alt="工具包文件列表" width="720">
 </p>
 
 <p align="center">
-  <img src="./assets/img/frog-main.png" alt="小青蛙 Pro" width="360">
+  <sub>系统包 / 微狗 3066 / 微狗 2358 / 改机 / GMT / skill / 安卓 ip 代理 / 抓包</sub>
 </p>
 
 ---
@@ -79,13 +122,14 @@ xzgaiji/
     ├── js/
     │   └── main.js         # 交互脚本
     └── img/
-        ├── tools-main.png  # 工具链主视觉
-        ├── helper-main.png # 一一助手
-        ├── vs-main.png     # VS大师
-        ├── frog-main.png   # 小青蛙 Pro
-        ├── gmt1.jpg        # GMT 界面图
-        ├── biz.svg / tools.svg
-        └── *.png / *.webp  # 图标与装饰图
+        ├── gmt1.jpg         # GMT 一键新机 logo（黑金）
+        ├── xxt.webp         # XXTouch logo（蓝白 XXT）
+        ├── vs-main.png      # VS大师 界面截图
+        ├── helper-main.png  # 一一助手 界面截图
+        ├── frog-main.png    # 小青蛙 Pro 界面截图
+        ├── tools-main.png   # 工具包文件列表
+        ├── frog.webp        # 小青蛙方形图 800×800
+        └── biz.svg / tools.svg / vs.png / helper.png
 ```
 
 ---
