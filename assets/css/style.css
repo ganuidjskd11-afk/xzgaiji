@@ -697,6 +697,31 @@ tbody tr:hover { background: rgba(47, 123, 255, .07); }
   .pojia-art img { width: 260px; }
 }
 
+/* AI破甲 能力区 */
+.caps-hero {
+  display: flex; justify-content: center; align-items: center;
+  margin: 0 auto 42px; max-width: 620px;
+  padding: 26px 22px; border-radius: 20px;
+  border: 1px solid var(--line); background: var(--panel);
+}
+.caps-hero img {
+  width: 100%; max-width: 520px; height: auto; display: block;
+  border-radius: 12px;
+}
+.caps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.caps-grid .card { padding: 22px 20px 24px; }
+.caps-grid .card .ic { width: 42px; height: 42px; font-size: 20px; border-radius: 12px; margin-bottom: 13px; }
+.caps-grid .card h3 { font-size: 16.5px; margin-bottom: 7px; }
+.caps-grid .card p { font-size: 14px; }
+.caps-grid .card .more { font-size: 12.5px; margin-top: 12px; }
+@media (max-width: 940px) {
+  .caps-grid { grid-template-columns: repeat(2, 1fr); }
+  .caps-hero { margin-bottom: 32px; }
+}
+@media (max-width: 600px) {
+  .caps-grid { grid-template-columns: 1fr; }
+}
+
 /* 一一助手客户端主图 */
 .helper-art {
   display: flex; align-items: center; justify-content: center;
