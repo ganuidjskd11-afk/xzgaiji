@@ -46,7 +46,7 @@
   window.addEventListener('resize', reveal);
 
   // 下载按钮：本地文件不存在时给出提示（外链直接放行，避免跨域 HEAD 被 CORS 拦掉）
-  document.querySelectorAll('a[href$=".apk"]').forEach(function (a) {
+  document.querySelectorAll('a[href$=".apk"], a[href$=".exe"]').forEach(function (a) {
     var href = a.getAttribute('href') || '';
     if (/^https?:\/\//i.test(href)) {
       a.setAttribute('target', '_blank');
