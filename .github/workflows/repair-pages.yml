@@ -1,0 +1,53 @@
+name: Repair stuck Pages deployment
+
+# 用于 GitHub Pages 后端残留「in progress 部署」导致后续部署全部 400 失败的情况。
+# 在 Actions 页面手动 Run workflow，填入报错里提示的 commit SHA 即可解锁并自动重新部署。
+on:
+  workflow_dispatch:
+    inputs:
+      stuck_sha:
+        description: '被卡住的部署 commit SHA（见报错 "Please cancel XXX first"）'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  actions: write
+  id-token: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel stuck deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const sha = context.payload.inputs.stuck_sha.trim();
+            core.info(`Cancelling stuck Pages deployment: ${sha}`);
+            try {
+              const { data } = await github.request(
+                'GET /repos/{owner}/{repo}/pages/deployments/{pages_deployment_id}',
+                { owner, repo, pages_deployment_id: sha }
+              );
+              core.info(`Current status: ${JSON.stringify(data)}`);
+            } catch (e) {
+              core.warning(`GET status failed: ${e.message}`);
+            }
+            const res = await github.request(
+              'POST /repos/{owner}/{repo}/pages/deployments/{pages_deployment_id}/cancel',
+              { owner, repo, pages_deployment_id: sha }
+            );
+            core.info(`Cancel result: HTTP ${res.status}`);
+
+      - name: Re-run Pages deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            await github.rest.actions.createWorkflowDispatch({
+              owner, repo, workflow_id: 'pages.yml', ref: 'main'
+            });
+            core.info('Pages deployment re-dispatched');
