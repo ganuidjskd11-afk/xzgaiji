@@ -71,6 +71,8 @@
   var tabs = document.querySelectorAll('.ptab');
   var panels = document.querySelectorAll('[data-panel]');
   var pLinks = document.querySelectorAll('[data-p]');
+  // 显隐只作用于导航 / 页脚；面板内部的跨面板链接（如成果卡片）始终可见
+  var navPLinks = document.querySelectorAll('.nav-links [data-p], .foot-grid [data-p], .nav-cta[data-p]');
 
   function showPanel(key, scrollTop) {
     tabs.forEach(function (t) {
@@ -90,7 +92,7 @@
     });
     // 导航 / 页脚里的链接按归属显示：只显示属于当前软件的链接，
     // 其余隐藏（.ptab 切换按钮没有 href，不受影响，永远常驻）
-    pLinks.forEach(function (a) {
+    navPLinks.forEach(function (a) {
       if (!a.hasAttribute('href')) return;
       a.classList.toggle('p-hidden', a.getAttribute('data-p') !== key);
     });

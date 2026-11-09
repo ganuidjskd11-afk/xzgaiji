@@ -475,8 +475,11 @@ footer { border-top: 1px solid var(--line); padding: 46px 0 34px; margin-top: 40
   .ptabs-label { display: none; }
   .ptab-img { width: 34px; height: 34px; border-radius: 9px; }
   .ptab { padding: 4px; border-radius: 11px; }
+  /* 9 个图标在小屏改为可横向滚动，避免顶栏被撑爆 */
+  .ptabs { flex: 1 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  .ptabs::-webkit-scrollbar { display: none; }
 }
-/* 很窄的屏（7 个图标：xxt/gmt/vs/frog/helper/tools/biz）再收一档，避免顶栏挤爆 */
+/* 很窄的屏（9 个图标：xxt/gmt/vs/frog/helper/works/pojia/tools/biz）再收一档，避免顶栏挤爆 */
 @media (max-width: 420px) {
   .ptabs { gap: 4px; }
   .ptab { padding: 3px; border-radius: 10px; }
@@ -722,6 +725,65 @@ tbody tr:hover { background: rgba(47, 123, 255, .07); }
   .caps-grid { grid-template-columns: 1fr; }
 }
 
+/* 成果展示面板 */
+.works-art {
+  display: flex; align-items: center; justify-content: center;
+  height: 480px; border-radius: 22px;
+  background:
+    radial-gradient(420px 260px at 70% 15%, rgba(139, 92, 246, .18), transparent 70%),
+    radial-gradient(520px 320px at 20% 85%, rgba(59, 130, 246, .14), transparent 70%);
+}
+.works-art img {
+  width: 340px; max-width: 100%; border-radius: 16px; display: block;
+  box-shadow: 0 34px 70px -30px rgba(20, 50, 110, .5), 0 0 0 1px rgba(20, 50, 110, .08);
+  animation: float-main 5.8s ease-in-out 1s infinite;
+}
+.works-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.work-card {
+  border: 1px solid var(--line); border-radius: var(--r); background: var(--panel);
+  overflow: hidden; display: flex; flex-direction: column; transition: .25s;
+}
+.work-card:hover { transform: translateY(-6px); border-color: rgba(47, 123, 255, .45); }
+.work-cover {
+  position: relative; padding: 26px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(160deg, rgba(139, 92, 246, .1), rgba(59, 130, 246, .08));
+  border-bottom: 1px solid var(--line);
+}
+.work-cover img { width: 100%; max-width: 380px; height: auto; border-radius: 12px; display: block; }
+.work-no {
+  position: absolute; top: 16px; left: 18px; font-size: 12.5px; font-weight: 800;
+  color: #fff; letter-spacing: 1px; padding: 5px 10px; border-radius: 999px;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+}
+.work-body { padding: 26px 26px 28px; display: flex; flex-direction: column; flex: 1; }
+.work-kind { font-size: 12.5px; font-weight: 700; color: var(--txt-3); letter-spacing: .5px; }
+.work-body h3 { font-size: 20px; font-weight: 700; margin: 8px 0 10px; }
+.work-body p { color: var(--txt-2); font-size: 14.5px; }
+.work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; }
+.work-tags em {
+  font-style: normal; font-size: 12.5px; font-weight: 600; color: var(--txt-2);
+  padding: 5px 11px; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(47, 123, 255, .06);
+}
+.work-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+.work-soon-in {
+  padding: 60px 30px; text-align: center; flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.work-soon .ic {
+  width: 56px; height: 56px; border-radius: 16px; background: var(--grad-soft);
+  border: 1px dashed rgba(47, 123, 255, .45); display: grid; place-items: center;
+  font-size: 28px; color: var(--brand); margin-bottom: 18px;
+}
+.work-soon h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.work-soon p { color: var(--txt-2); font-size: 14.5px; }
+.work-soon .more { color: #7fb0ff; font-size: 13.5px; font-weight: 600; margin-top: 14px; }
+@media (max-width: 940px) {
+  .works-grid { grid-template-columns: 1fr; }
+  .works-art { height: auto; padding: 36px 0; }
+  .works-art img { width: 300px; }
+}
+
 /* 一一助手客户端主图 */
 .helper-art {
   display: flex; align-items: center; justify-content: center;
@@ -792,5 +854,5 @@ tbody tr:hover { background: rgba(47, 123, 255, .07); }
 
 /* 系统开启「减少动态效果」时关掉浮动动画 */
 @media (prefers-reduced-motion: reduce) {
-  .phone, .xxt-art-ic, .vs-art img, .frog-art img, .helper-art img, .pojia-art img, .tools-art img { animation: none !important; }
+  .phone, .xxt-art-ic, .vs-art img, .frog-art img, .helper-art img, .pojia-art img, .works-art img, .tools-art img { animation: none !important; }
 }
