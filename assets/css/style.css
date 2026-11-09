@@ -794,6 +794,17 @@ tbody tr:hover { background: rgba(47, 123, 255, .07); }
 .work-caps span { color: var(--txt-2); font-size: 13px; }
 .works-hint { text-align: center; color: var(--txt-3); font-size: 13.5px; margin-top: 22px; }
 
+/* 作品附带推广文案：原样保留，便于复制到闲鱼 / 朋友圈 / 社群投放 */
+.work-copy {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 20px 22px;
+}
+.work-copy h5 { font-size: 16px; font-weight: 700; line-height: 1.6; margin: 0 0 14px; }
+.work-copy p { color: var(--txt-2); font-size: 14px; line-height: 1.9; margin: 0 0 10px; }
+.work-copy p:last-child { margin-bottom: 0; }
+.work-copy b { color: var(--txt); font-weight: 700; }
+@media (max-width: 600px) { .work-copy { padding: 16px; } }
+
 @media (max-width: 940px) {
   .work-detail-grid { grid-template-columns: 1fr; }
   .work-caps { grid-template-columns: 1fr; }

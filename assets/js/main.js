@@ -245,9 +245,12 @@
   (function () {
     var list = document.getElementById('worksList');
     if (!list) return;
-    Array.prototype.slice.call(list.querySelectorAll('.work-item'))
+    Array.prototype.slice.call(list.querySelectorAll(".work-item"))
       .sort(function (a, b) {
-        return (b.getAttribute('data-date') || '').localeCompare(a.getAttribute('data-date') || '');
+        var d = (b.getAttribute("data-date") || "").localeCompare(a.getAttribute("data-date") || "");
+        if (d) return d;
+        // 同一天：保持 HTML 里的先后顺序，写在最前面的排最上面
+        return (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1;
       })
       .forEach(function (it, idx) {
         list.appendChild(it);
