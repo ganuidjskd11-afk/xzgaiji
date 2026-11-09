@@ -797,7 +797,7 @@ tbody tr:hover { background: rgba(47, 123, 255, .07); }
 /* 作品附带推广文案：原样保留，便于复制到闲鱼 / 朋友圈 / 社群投放 */
 .work-copy {
   background: var(--panel); border: 1px solid var(--line);
-  border-radius: var(--r); padding: 20px 22px;
+  border-radius: var(--r); padding: 20px 22px; margin-top: 26px;
 }
 .work-copy h5 { font-size: 16px; font-weight: 700; line-height: 1.6; margin: 0 0 14px; }
 .work-copy p { color: var(--txt-2); font-size: 14px; line-height: 1.9; margin: 0 0 10px; }
