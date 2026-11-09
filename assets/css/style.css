@@ -725,19 +725,6 @@ tbody tr:hover { background: rgba(47, 123, 255, .07); }
   .caps-grid { grid-template-columns: 1fr; }
 }
 
-/* 成果展示面板 */
-.works-art {
-  display: flex; align-items: center; justify-content: center;
-  height: 480px; border-radius: 22px;
-  background:
-    radial-gradient(420px 260px at 70% 15%, rgba(139, 92, 246, .18), transparent 70%),
-    radial-gradient(520px 320px at 20% 85%, rgba(59, 130, 246, .14), transparent 70%);
-}
-.works-art img {
-  width: 340px; max-width: 100%; border-radius: 16px; display: block;
-  box-shadow: 0 34px 70px -30px rgba(20, 50, 110, .5), 0 0 0 1px rgba(20, 50, 110, .08);
-  animation: float-main 5.8s ease-in-out 1s infinite;
-}
 /* 成果列表：一行一个作品，点击展开详情 */
 .works-note { text-align: center; color: var(--txt-3); font-size: 13.5px; margin: -24px 0 24px; }
 .works-list { display: flex; flex-direction: column; gap: 12px; }
@@ -810,8 +797,6 @@ tbody tr:hover { background: rgba(47, 123, 255, .07); }
 @media (max-width: 940px) {
   .work-detail-grid { grid-template-columns: 1fr; }
   .work-caps { grid-template-columns: 1fr; }
-  .works-art { height: auto; padding: 36px 0; }
-  .works-art img { width: 300px; }
 }
 @media (max-width: 600px) {
   .work-row { padding: 14px 16px; gap: 12px; }
@@ -890,5 +875,5 @@ tbody tr:hover { background: rgba(47, 123, 255, .07); }
 
 /* 系统开启「减少动态效果」时关掉浮动动画 */
 @media (prefers-reduced-motion: reduce) {
-  .phone, .xxt-art-ic, .vs-art img, .frog-art img, .helper-art img, .pojia-art img, .works-art img, .tools-art img { animation: none !important; }
+  .phone, .xxt-art-ic, .vs-art img, .frog-art img, .helper-art img, .pojia-art img, .tools-art img { animation: none !important; }
 }
