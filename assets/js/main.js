@@ -238,4 +238,21 @@
       }, needSwitch ? 80 : 0);
     });
   });
+
+  // 成果列表：按 data-date 倒序，新添加的作品自动排到最上面；编号随顺序自动重排
+  // 新增作品只需复制一个 <details class="work-item" data-date="YYYY-MM-DD">，
+  // 日期填得越新就越靠前，HTML 里写在哪个位置都不影响最终顺序。
+  (function () {
+    var list = document.getElementById('worksList');
+    if (!list) return;
+    Array.prototype.slice.call(list.querySelectorAll('.work-item'))
+      .sort(function (a, b) {
+        return (b.getAttribute('data-date') || '').localeCompare(a.getAttribute('data-date') || '');
+      })
+      .forEach(function (it, idx) {
+        list.appendChild(it);
+        var no = it.querySelector('.work-no');
+        if (no) no.textContent = (idx + 1) < 10 ? '0' + (idx + 1) : String(idx + 1);
+      });
+  })();
 })();

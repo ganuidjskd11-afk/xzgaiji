@@ -6,7 +6,7 @@
 <title>GMT 一键新机 · XXTouch iOS 脚本 · VS大师 · 小青蛙 Pro · 一一助手 — 安卓改机与 iOS 自动化工具</title>
 <meta name="description" content="安卓端 GMT 一键新机改机工具（目前仅支持小米 6 sagit，需先刷机）：修改 IMEI / IMSI / ICCID / MAC 等 180+ 项设备标识，附虚拟定位、应用多开；VS大师、小青蛙 Pro、一一助手改机（小米 6 · 微狗系统）；iOS 端 XXTouch：Lua 5.3 脚本、操作录制重放与 HTTP 二次开发接口。">
 <meta name="keywords" content="一键新机,改机软件,GMT,IMEI修改,设备伪装,虚拟定位,应用多开,小米6刷机,安卓改机,VS大师,小青蛙,一一助手,微狗系统,XXTouch,iOS脚本,Lua自动化,触控重放">
-<link rel="stylesheet" href="assets/css/style.css?v=20261110q2">
+<link rel="stylesheet" href="assets/css/style.css?v=20261110q3">
 </head>
 <body>
 
@@ -753,7 +753,7 @@
       <h1>成果<span class="grad-txt">展示</span></h1>
       <p class="lead">
         逆向分析、自动化工具、协议还原与 Windows 端实用程序。
-        这里收录已经落地交付的作品，第一个成果是 <b>AI 破解 · 一键破甲工具</b>，后续持续补充。
+        这里收录已经落地交付的作品与工具，点击任意一项即可展开查看完整信息，新作品持续更新。
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#works" data-p="works">↓ 查看成果</a>
@@ -775,44 +775,68 @@
       <p class="sec-sub">从逆向分析到一键化工具，这里收录完成并交付的作品，持续更新。</p>
     </div>
 
-    <div class="works-grid">
-      <!-- 成果 01：AI 破解 -->
-      <article class="work-card">
-        <div class="work-cover">
-          <img src="assets/img/pojia-caps.png" alt="AI 破解 · 七合一能力总览" width="407" height="259">
-          <span class="work-no">01</span>
-        </div>
-        <div class="work-body">
-          <span class="work-kind">Windows 工具 · 逆向自动化</span>
-          <h3>AI 破解 · 一键破甲工具</h3>
-          <p>
-            面向 Windows 的一键化破甲工具，内置授权启动器与卡密体系。
-            覆盖 PE / ELF / APK / DEX 结构解析、反汇编反编译、算法还原、补丁重打包、
-            脱壳与 Frida Hook、协议还原等七合一能力。
-          </p>
-          <div class="work-tags">
-            <em>Windows</em><em>v1.0.8</em><em>七合一能力</em><em>卡密授权</em>
-          </div>
-          <div class="work-acts">
-            <a class="btn btn-primary" href="assets/download/AI一键破甲工具1.0.8.exe">↓ 下载 v1.0.8</a>
-            <a class="btn btn-ghost" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 咨询</a>
-          </div>
-        </div>
-      </article>
+    <p class="works-note">点击任意成果展开查看详细信息 · 新作品自动排在最上方</p>
 
-      <!-- 后续成果占位 -->
-      <article class="work-card work-soon">
-        <div class="work-soon-in">
-          <div class="ic">＋</div>
-          <h3>更多成果整理中</h3>
-          <p>新的工具与案例会陆续补充到这里。</p>
-          <span class="more">Coming soon</span>
+    <div class="works-list" id="worksList">
+      <!-- 新增作品：复制下面整个 <details class="work-item">…</details> 插到本列表最前面，
+           改 data-date（YYYY-MM-DD，越新越靠上）、编号、标题、摘要与详情即可。
+           页面加载时会自动按 data-date 倒序排列。 -->
+
+      <!-- 成果：AI 破解 -->
+      <details class="work-item" data-date="2026-11-10">
+        <summary class="work-row">
+          <span class="work-no">01</span>
+          <span class="work-main">
+            <b>AI 破解 · 一键破甲工具</b>
+            <i>面向 Windows 的一键化破甲工具，内置授权启动器与卡密体系，覆盖七合一逆向能力。</i>
+          </span>
+          <span class="work-meta">
+            <em class="work-tag">Windows</em>
+            <time class="work-date">2026.11</time>
+          </span>
+          <span class="work-arrow" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="work-detail">
+          <div class="work-detail-grid">
+            <div class="work-shot">
+              <img src="assets/img/pojia-caps.png" alt="AI 破解 · 七合一能力总览" width="407" height="259">
+            </div>
+            <div class="work-info">
+              <span class="work-kind">Windows 工具 · 逆向自动化</span>
+              <h3>AI 破解 · 一键破甲工具 <em>v1.0.8</em></h3>
+              <p>
+                面向 Windows 的一键化破甲工具，内置授权启动器与卡密体系。
+                卡密激活后自动释放并拉起本体，支持心跳保活与离线宽限。
+              </p>
+              <dl class="work-facts">
+                <div><dt>运行平台</dt><dd>Windows 7 及以上</dd></div>
+                <div><dt>授权方式</dt><dd>卡密 · 绑定设备</dd></div>
+                <div><dt>当前版本</dt><dd>v1.0.8</dd></div>
+                <div><dt>更新日期</dt><dd>2026.11</dd></div>
+              </dl>
+              <div class="work-acts">
+                <a class="btn btn-primary" href="assets/download/AI一键破甲工具1.0.8.exe">↓ 下载 v1.0.8</a>
+                <a class="btn btn-ghost" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 咨询</a>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="work-sub">核心能力</h4>
+          <ul class="work-caps">
+            <li><b>结构解析</b><span>PE / ELF / APK / DEX 结构解析，节表、导入导出、资源提取（pefile / lief / jadx / apktool）</span></li>
+            <li><b>反汇编与反编译</b><span>capstone 反汇编、IDA 风格手工还原、Delphi/VCL 程序符号定位</span></li>
+            <li><b>交叉引用与算法还原</b><span>字符串 / 常量交叉引用定位、授权校验点定位、MD5 / HMAC / RC4 / 自定义混淆还原</span></li>
+            <li><b>补丁与重打包</b><span>原地 patch、备份、幂等脚本、PE 完整性校验</span></li>
+            <li><b>脱壳与动态 Hook</b><span>脱壳、去混淆、JS 逆向（webpack / vmp）、Frida Hook、内存读写</span></li>
+            <li><b>抓包与协议还原</b><span>HTTP / WS / 私有 TCP 协议还原、模拟登录、接口复现</span></li>
+            <li><b>授权限制解除</b><span>加密狗 / 授权 / 试用期 / 时间锁 / 机器码绑定类限制的分析与解除</span></li>
+            <li><b>样本行为分析</b><span>病毒 / 木马样本行为分析、持久化与启动项排查</span></li>
+          </ul>
         </div>
-      </article>
+      </details>
     </div>
 
-    <p class="cta-contact">
-      合作 / 定制需求：
+    <p class="works-hint">更多成果持续更新中 · 合作 / 定制需求：
       <a class="tg" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">Telegram @xiaozhuzhuxz</a>
     </p>
   </div>
@@ -1162,6 +1186,6 @@
 <!-- 鼠标彗星拖尾（鼠标移动时彩色拖尾，纯装饰，不参与交互） -->
 <canvas class="fx" id="fx" aria-hidden="true"></canvas>
 
-<script src="assets/js/main.js?v=20261110q2"></script>
+<script src="assets/js/main.js?v=20261110q3"></script>
 </body>
 </html>
