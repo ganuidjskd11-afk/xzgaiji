@@ -6,7 +6,7 @@
 <title>GMT 一键新机 · XXTouch iOS 脚本 · VS大师 · 小青蛙 Pro · 一一助手 — 安卓改机与 iOS 自动化工具</title>
 <meta name="description" content="安卓端 GMT 一键新机改机工具（目前仅支持小米 6 sagit，需先刷机）：修改 IMEI / IMSI / ICCID / MAC 等 180+ 项设备标识，附虚拟定位、应用多开；VS大师、小青蛙 Pro、一一助手改机（小米 6 · 微狗系统）；iOS 端 XXTouch：Lua 5.3 脚本、操作录制重放与 HTTP 二次开发接口。">
 <meta name="keywords" content="一键新机,改机软件,GMT,IMEI修改,设备伪装,虚拟定位,应用多开,小米6刷机,安卓改机,VS大师,小青蛙,一一助手,微狗系统,XXTouch,iOS脚本,Lua自动化,触控重放">
-<link rel="stylesheet" href="assets/css/style.css?v=20261110q6">
+<link rel="stylesheet" href="assets/css/style.css?v=20261111q1">
 </head>
 <body>
 
@@ -761,6 +761,51 @@
            改 data-date（YYYY-MM-DD，越新越靠上）、编号、标题、摘要与详情即可。
            页面加载时会自动按 data-date 倒序排列。 -->
 
+      <!-- 成果：XZ 指纹浏览器 -->
+      <details class="work-item" data-date="2026-11-11">
+        <summary class="work-row">
+          <span class="work-no">01</span>
+          <span class="work-main">
+            <b>XZ 指纹浏览器 · 多环境隔离</b>
+            <i>Python 后端 + H5 渲染层的环境控制台，一键创建独立窗口、随机化浏览器指纹、按窗口配置代理。</i>
+          </span>
+          <span class="work-meta">
+            <em class="work-tag">Windows</em>
+            <time class="work-date">2026.11</time>
+          </span>
+          <span class="work-arrow" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="work-detail">
+          <div class="work-detail-grid">
+            <div class="work-shot">
+              <img src="assets/img/fingerprint-browser.png" alt="XZ 指纹浏览器 · 环境详情与指纹参数界面" width="1341" height="850">
+            </div>
+            <div class="work-info">
+              <span class="work-kind">Windows 桌面工具 · 多环境隔离</span>
+              <h3>XZ 指纹浏览器</h3>
+              <p>基于 Python 后端 + H5 渲染层的环境控制台。每个窗口默认分配一套独立随机指纹，可单独设置代理、查看运行状态，并随时一键重新随机化；适合多账号并行、需要环境隔离的运营场景。</p>
+              <dl class="work-facts">
+                <div><dt>运行环境</dt><dd>Windows 桌面端</dd></div>
+                <div><dt>窗口配额</dt><dd>50 个独立环境</dd></div>
+                <div><dt>指纹维度</dt><dd>品牌 / 系统 / GPU / 时区 / 语言</dd></div>
+                <div><dt>代理方式</dt><dd>每窗口独立 · 本地认证中继</dd></div>
+              </dl>
+              <div class="work-acts">
+                <a class="btn btn-ghost" href="https://t.me/xiaozhuzhuxz" target="_blank" rel="noopener noreferrer">TG 咨询 / 获取</a>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="work-sub">核心能力</h4>
+          <ul class="work-caps">
+            <li><b>独立窗口环境</b><span>一键创建、打开、删除窗口，支持复制命令行与 CDP 调试端口自动分配；运行状态、进程 PID、创建时间、启动页实时可查。</span></li>
+            <li><b>指纹随机化</b><span>32 位 seed 驱动，覆盖浏览器品牌与版本、操作系统、CPU 核心数、GPU 厂商与渲染器、时区、界面语言；点「重新随机化窗口」下次启动即生效。</span></li>
+            <li><b>代理 IP 隔离</b><span>每个窗口单独配置 HTTP / SOCKS5 代理，支持保存与测试；带账号密码的代理由本地认证中继注入凭据，浏览器只连 127.0.0.1，不弹认证框。</span></li>
+            <li><b>可视化管理</b><span>默认窗口 / 常用窗口 / 已打开分组查看，窗口数量、内核状态、当前指纹 seed 一目了然，方便批量维护环境。</span></li>
+          </ul>
+        </div>
+      </details>
+
       <!-- 成果：X 博主信息采集器 -->
       <details class="work-item" data-date="2026-11-10">
         <summary class="work-row">
@@ -1212,6 +1257,6 @@
 <!-- 鼠标彗星拖尾（鼠标移动时彩色拖尾，纯装饰，不参与交互） -->
 <canvas class="fx" id="fx" aria-hidden="true"></canvas>
 
-<script src="assets/js/main.js?v=20261110q6"></script>
+<script src="assets/js/main.js?v=20261111q1"></script>
 </body>
 </html>
